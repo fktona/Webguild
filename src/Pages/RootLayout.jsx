@@ -4,6 +4,7 @@ import gif from "../cartoon-573.gif";
 function App() {
   const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
   const [showText, setShowText] = useState('');
+  const [toggle, setToggle] = useState('');
   const [selectedVoice, setSelectedVoice] = useState(null);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
   }, []);
 
   const moveImageToButton = (buttonId) => {
+    setToggle((prc) => !prc)
     const margin = -50;
     const buttonElement = document.getElementById(buttonId);
 
@@ -35,13 +37,13 @@ function App() {
       const buttonText = document.getElementById(buttonId).textContent;
       setShowText(buttonText);
 
-      // Create a new speech synthesis utterance
+     
       const utterance = new SpeechSynthesisUtterance(buttonText);
       if (selectedVoice) {
         utterance.voice = selectedVoice;
       }
       
-      // Speak the utterance
+     
       window.speechSynthesis.speak(utterance);
 
       const buttonRect = buttonElement.getBoundingClientRect();
@@ -65,7 +67,7 @@ function App() {
           onClick={() => moveImageToButton('openTabButton')}
         >
           open new Tab
-                <span class="hidden m-2"> button will take you to the open new Tab for you</span>
+                <span class="hidden m-2"> button will open new Tab for you</span>
         </button>
         <button
           id="prevPageButton"
@@ -83,7 +85,7 @@ function App() {
         >
           Next page
                 <span class="hidden m-3
-                2">button will take you to the Next page </span>
+                2"> button will take you to the Next page </span>
         </button>
         <button
           id="shareContentButton"
@@ -91,7 +93,7 @@ function App() {
           onClick={() => moveImageToButton('shareContentButton')}
         >
           share content
-                <span class="hidden m-2">button will share your content</span>
+                <span class="hidden m-2"> button will share your content</span>
         </button>
         <button
           id="saveFileButton"
@@ -110,7 +112,7 @@ function App() {
                 <span class="hidden m-2"> button will save your work</span>
         </button>
       </div>
-      <div className={`h-[30vw] bg-white w-[20vw] bg-black image rounded-ful object-fit absolute `}
+      <div className={`h-[30vw]  bg-white w-[20vw] bg-black image rounded-ful object-fit absolute `}
       style={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}>
 <img
         src={
@@ -119,7 +121,7 @@ function App() {
         className={`h-[30vw] w-[20vw] image inline-block rounded-ful object-fit `}
         styl={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}
       />
-      <span className=" md:font-bold p-2 bg-black text-white text-center md:text-lg">{showText}</span>
+      <span className=" md:font-bold p-2 border- border-blue-800 text-center md:text-lg">{showText}</span>
     </div>
     </div>
   );
