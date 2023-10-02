@@ -1,34 +1,51 @@
-import { useState,useEffect } from 'react';
-import gif from "../cartoon-573.gif"
-function App() {
-  
-  const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
-  
-  const [showText , setShowText] = useState("")
-  const [button , setButton] = useState()
+import React, { useState, useEffect } from 'react';
+import gif from "../cartoon-573.gif";
 
-  
+function App() {
+  const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
+  const [showText, setShowText] = useState('');
+  const [selectedVoice, setSelectedVoice] = useState(null);
+
   useEffect(() => {
     const pageWidth = window.innerWidth;
     const pageHeight = window.innerHeight;
-    const imageWidth = 0.32 * pageWidth; 
-    const imageHeight = 0.3 * pageHeight; 
-    const initialLeft = pageWidth - imageWidth; 
+    const imageWidth = 0.32 * pageWidth;
+    const imageHeight = 0.3 * pageHeight;
+    const initialLeft = pageWidth - imageWidth;
     const initialTop = pageHeight - imageHeight;
 
     setImagePosition({ top: initialTop, left: initialLeft });
+
+   
+    const availableVoices = window.speechSynthesis.getVoices();
+    setSelectedVoice(availableVoices.find(voice => voice.gender === 'en_GB')); // Example: Choose an English (US) voice
+
+    
+    window.speechSynthesis.onvoiceschanged = () => {
+      const updatedVoices = window.speechSynthesis.getVoices();
+      setSelectedVoice(updatedVoices.find(voice => voice.lang === 'en_GB'));
+    };
   }, []);
 
   const moveImageToButton = (buttonId) => {
-    
-    
-    const margin= -50
+    const margin = -50;
     const buttonElement = document.getElementById(buttonId);
+
     if (buttonElement) {
-      setShowText(document.getElementById(buttonId).textContent)
+      const buttonText = document.getElementById(buttonId).textContent;
+      setShowText(buttonText);
+
+      // Create a new speech synthesis utterance
+      const utterance = new SpeechSynthesisUtterance(buttonText);
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
+      // Speak the utterance
+      window.speechSynthesis.speak(utterance);
+
       const buttonRect = buttonElement.getBoundingClientRect();
       setImagePosition({
-        
         top: buttonRect.top - margin,
         left: buttonRect.left,
       });
