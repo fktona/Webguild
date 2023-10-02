@@ -7,14 +7,14 @@ function App() {
   const [showText , setShowText] = useState("")
   const [button , setButton] = useState()
 
-  // Set the initial position of the image to the bottom-right when the component mounts
+  
   useEffect(() => {
     const pageWidth = window.innerWidth;
     const pageHeight = window.innerHeight;
-    const imageWidth = 0.32 * pageWidth; // Adjust the width as needed
-    const imageHeight = 0.3 * pageHeight; // Adjust the height as needed
-    const initialLeft = pageWidth - imageWidth; // Position at the right edge
-    const initialTop = pageHeight - imageHeight; // Position at the bottom edge
+    const imageWidth = 0.32 * pageWidth; 
+    const imageHeight = 0.3 * pageHeight; 
+    const initialLeft = pageWidth - imageWidth; 
+    const initialTop = pageHeight - imageHeight;
 
     setImagePosition({ top: initialTop, left: initialLeft });
   }, []);
