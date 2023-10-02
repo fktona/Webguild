@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-
+import gif from "../cartoon-573.gif"
 function App() {
   
   const [imagePosition, setImagePosition] = useState({ top: 0, left: 0 });
@@ -97,7 +97,7 @@ function App() {
       style={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}>
 <img
         src={
-          'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXNzaXN0YW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=1000&q=60'
+          gif
         }
         className={`h-[30vw] w-[20vw] image rounded-ful object-fit `}
         styl={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}
