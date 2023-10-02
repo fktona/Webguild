@@ -44,7 +44,7 @@ function App() {
   
         <button
           id="openTabButton"
-          className="px-4 py-2 hover:bg-blue-300 bg-green-800 text-white"
+          className="px-4 py-2 hover:bg-blue-300 bg-blue-800 text-white"
           onClick={() => moveImageToButton('openTabButton')}
         >
           open new Tab
@@ -93,16 +93,16 @@ function App() {
                 <span class="hidden m-2"> button will save your work</span>
         </button>
       </div>
-      <div className={`h-[30vw] w-[20vw] bg-black image rounded-ful object-fit absolute`}
+      <div className={`h-[30vw] bg-white w-[20vw] bg-black image rounded-ful object-fit absolute `}
       style={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}>
 <img
         src={
           gif
         }
-        className={`h-[30vw] w-[20vw] image rounded-ful object-fit `}
+        className={`h-[30vw] w-[20vw] image inline-block rounded-ful object-fit `}
         styl={{ top: imagePosition.top + 'px', left: imagePosition.left + 'px' }}
       />
-      <span className=" md:font-bold p-2 text-center md:text-lg">{showText}</span>
+      <span className=" md:font-bold p-2 bg-black text-white text-center md:text-lg">{showText}</span>
     </div>
     </div>
   );
